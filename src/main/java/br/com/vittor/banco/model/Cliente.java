@@ -16,9 +16,6 @@ public class Cliente {
         this.email = email;
         this.telefone = telefone;
     }
-    public Cliente() {
-
-    }
 
     public Long getId(){
         return this.id;

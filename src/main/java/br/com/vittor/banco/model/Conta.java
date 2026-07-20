@@ -31,6 +31,16 @@ public class Conta {
         return ativa;
     }
 
+    public String toString(){
+        return "Conta{" + " \nnumero= " + numero + "\ntitular= " + titular.getNome() + "\nsaldo= "
+                + saldo + "\nativa= " + ativa + "\n}";
+    }
+
+
+    public void adicionarSaldo (double valor){
+        saldo += valor;
+    }
+
 
 
 }

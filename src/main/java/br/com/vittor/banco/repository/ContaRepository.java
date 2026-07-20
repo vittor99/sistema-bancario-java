@@ -9,13 +9,22 @@ public class ContaRepository {
 
     private final List<Conta> contas;
 
-    public ContaRepository(){  //existe apenas para criar um objeto vazio apenas para que crie uma local de referencia para a entradas dos objetos
+    public ContaRepository(){
         contas = new ArrayList<>();
 
     }
 
     public void salvar(Conta conta){
         contas.add(conta);
+    }
+
+    public Conta buscarPorNumero(Long numero) {
+        for (Conta conta : contas){
+            if (conta.getNumero().equals(numero)){
+                return conta;
+            }
+        }
+        return null;
     }
 
 
