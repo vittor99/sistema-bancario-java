@@ -15,6 +15,8 @@ public class Main {
 
         contaService.depositar(1001L, 200.0);
 
+        contaService.sacar(1001L, 110.0);
+
         Conta encontrada = contaService.buscarConta(conta.getNumero());
 
         System.out.println(encontrada);

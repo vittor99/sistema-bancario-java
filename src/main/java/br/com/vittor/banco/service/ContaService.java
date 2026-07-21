@@ -41,10 +41,27 @@ public class ContaService {
         if (valor <= 0){
             return;
         }
-        conta.adicionarSaldo(valor);
+        conta.depositar(valor);
 
     }
 
 
+    public void sacar (Long numeroConta, double valor){
+        Conta conta = buscarConta(numeroConta);
+        if (conta == null){
+            return;
+        }
+        if (!conta.isAtiva()){
+            return;
+        }
+        if (valor <= 0){
+            return;
+        }
+        if (conta.getSaldo() < valor){
+            return;
+        }
+        conta.sacar(valor);
+
+    }
 
 }
