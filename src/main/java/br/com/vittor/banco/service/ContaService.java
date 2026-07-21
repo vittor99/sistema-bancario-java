@@ -64,4 +64,40 @@ public class ContaService {
 
     }
 
+    public void transferir (Long numeroContaX, Long numeroContaY, double valor){
+        Conta contaX = buscarConta(numeroContaX);
+        Conta contaY = buscarConta(numeroContaY);
+
+        if (contaX == null || contaY == null){
+            return;
+        }
+
+        if (!contaX.isAtiva() || !contaY.isAtiva()){
+            return;
+        }
+        if (valor <= 0){
+            return;
+        }
+        if (contaX.getSaldo() < valor){
+            return;
+        }
+
+        contaX.debitar(valor);
+        contaY.creditar(valor);
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 }
