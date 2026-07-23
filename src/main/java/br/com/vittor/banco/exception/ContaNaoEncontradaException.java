@@ -1,4 +1,4 @@
 package br.com.vittor.banco.exception;
 
-public class ContaNaoEncontradaException {
+public class ContaNaoEncontradaException extends RuntimeException{
 }

@@ -1,5 +1,9 @@
 package br.com.vittor.banco.service;
 
+import br.com.vittor.banco.exception.ContaInativaException;
+import br.com.vittor.banco.exception.ContaNaoEncontradaException;
+import br.com.vittor.banco.exception.SaldoInsuficienteException;
+import br.com.vittor.banco.exception.ValorInvalidoException;
 import br.com.vittor.banco.model.Cliente;
 import br.com.vittor.banco.model.Conta;
 import br.com.vittor.banco.repository.ContaRepository;
@@ -33,13 +37,13 @@ public class ContaService {
     public void depositar (Long numeroConta, double valor){
         Conta conta = buscarConta(numeroConta);
         if (conta == null){
-            return;
+            throw new ContaNaoEncontradaException();
         }
         if (!conta.isAtiva()){
-            return;
+            throw new ContaInativaException();
         }
         if (valor <= 0){
-            return;
+            throw new ValorInvalidoException();
         }
         conta.depositar(valor);
 
@@ -49,16 +53,16 @@ public class ContaService {
     public void sacar (Long numeroConta, double valor){
         Conta conta = buscarConta(numeroConta);
         if (conta == null){
-            return;
+            throw new ContaNaoEncontradaException();
         }
         if (!conta.isAtiva()){
-            return;
+            throw new ContaInativaException();
         }
         if (valor <= 0){
-            return;
+            throw new ValorInvalidoException();
         }
         if (conta.getSaldo() < valor){
-            return;
+            throw new SaldoInsuficienteException();
         }
         conta.sacar(valor);
 
@@ -69,17 +73,17 @@ public class ContaService {
         Conta contaY = buscarConta(numeroContaY);
 
         if (contaX == null || contaY == null){
-            return;
+            throw new ContaNaoEncontradaException();
         }
 
         if (!contaX.isAtiva() || !contaY.isAtiva()){
-            return;
+            throw new ContaInativaException();
         }
         if (valor <= 0){
-            return;
+            throw new ValorInvalidoException();
         }
         if (contaX.getSaldo() < valor){
-            return;
+            throw new SaldoInsuficienteException();
         }
 
         contaX.debitar(valor);
